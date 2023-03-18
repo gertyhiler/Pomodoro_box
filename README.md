@@ -20,3 +20,4 @@
 - Контейнер состояний: Zustand
 - Графики: Rechart
 - CSS: Tailwind
+- Структура: Atomic design
