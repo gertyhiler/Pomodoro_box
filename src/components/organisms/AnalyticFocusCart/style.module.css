@@ -1,0 +1,19 @@
+.focusCart {
+  @apply relative flex flex-col gap-5 p-6 bg-focus-bg grow transition-colors
+}
+
+.focusCart>svg {
+  @apply absolute right-6
+}
+
+.focusCart>svg path {
+  @apply transition-colors
+}
+
+.empty {
+  @apply  bg-bg-f4
+}
+
+.empty>svg path {
+@apply stroke-color-c4
+}

@@ -1,0 +1,11 @@
+.text {
+  @apply text-base font-light w-fit
+}
+
+.white {
+  @apply text-white
+}
+
+.black {
+  @apply text-text-placeholder
+}

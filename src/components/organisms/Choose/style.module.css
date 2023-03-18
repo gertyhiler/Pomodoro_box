@@ -1,0 +1,8 @@
+.details[open]>summary svg{
+  transform: rotateX(180deg)
+}
+
+.details {
+  min-width: 370px;
+  @apply relative
+}

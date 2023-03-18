@@ -1,0 +1,5 @@
+.wrapper {
+  @apply flex flex-col gap-4 p-6 bg-bg-f4;
+  width: 296px;
+  height: 260px;
+}

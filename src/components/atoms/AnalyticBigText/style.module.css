@@ -1,0 +1,3 @@
+.text {
+  @apply text-text-primary-color text-[64px] leading-[77px];
+}

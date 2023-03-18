@@ -1,0 +1,7 @@
+.content {
+  @apply flex py-4 items-center gap-3
+}
+
+.content > *:last-child {
+  @apply ml-auto
+}

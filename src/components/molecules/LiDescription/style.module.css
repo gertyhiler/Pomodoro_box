@@ -1,0 +1,7 @@
+.li {
+  @apply flex items-start relative pl-4
+}
+
+.dotPosition {
+  @apply absolute top-2.5 left-0
+}

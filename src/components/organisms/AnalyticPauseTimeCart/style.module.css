@@ -1,0 +1,20 @@
+.pauseTimeCart {
+  @apply relative flex flex-col gap-5 p-6 bg-pause-time-bg grow transition-colors
+}
+
+.pauseTimeCart>svg {
+  @apply absolute right-6
+}
+
+.pauseTimeCart>svg path {
+  @apply transition-colors
+}
+
+
+.empty {
+  @apply bg-bg-f4
+}
+
+.empty>svg path {
+@apply stroke-color-c4
+}

@@ -1,0 +1,18 @@
+.recharts-bar-rectangle:hover>path {
+  @apply fill-primary
+}
+
+.recharts-cartesian-axis-tick text,
+.recharts-bar-rectangle > path {
+  @apply transition-colors
+}
+.yAxis .recharts-cartesian-axis-ticks .recharts-cartesian-axis-tick:first-child,
+.recharts-cartesian-grid-horizontal line:first-child,
+.recharts-cartesian-grid-horizontal line:last-child {
+display: none
+}
+
+.xAxis .recharts-cartesian-axis-ticks .recharts-cartesian-axis-tick {
+cursor: pointer
+}
+

@@ -1,0 +1,15 @@
+.modal {
+  @apply relative py-6 w-96 flex justify-center bg-white
+}
+
+.wrapper {
+  @apply flex flex-col gap-3 items-center w-fit
+}
+
+.wrapper>h3 {
+  @apply mb-6
+}
+
+.modal>button {
+  @apply absolute right-[10%] top-[10%]
+}

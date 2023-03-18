@@ -1,0 +1,7 @@
+.counter {
+  @apply py-1 px-3 border-solid border-color-c4 border-2 w-fit rounded-full
+}
+
+.text {
+  @apply font-light text-text-primary-color text-base
+}

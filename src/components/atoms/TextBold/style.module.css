@@ -1,0 +1,13 @@
+.text {
+  @apply  font-bold text-2xl
+}
+
+.gray {
+  @apply text-text-placeholder
+}
+.white {
+  @apply text-white
+}
+.black {
+  @apply text-text-primary-color
+}

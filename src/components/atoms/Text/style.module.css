@@ -1,0 +1,15 @@
+.text {
+  @apply text-base font-normal
+}
+
+.white {
+  @apply text-white
+}
+
+.black {
+  @apply text-text-primary-color
+}
+
+.red {
+  @apply text-primary
+}

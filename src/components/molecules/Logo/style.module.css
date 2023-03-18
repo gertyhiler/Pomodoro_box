@@ -1,0 +1,7 @@
+.link {
+  @apply flex items-center gap-2
+}
+
+.text {
+  @apply text-primary text-2xl font-light
+}

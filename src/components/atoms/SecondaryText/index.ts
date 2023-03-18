@@ -1,0 +1,1 @@
+export { SecondaryText } from './SecondaryText'

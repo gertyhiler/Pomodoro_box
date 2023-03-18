@@ -1,0 +1,15 @@
+.header {
+  @apply flex justify-between px-10 py-4 bg-color-c4 transition-colors
+}
+
+.header span:first-child {
+  @apply font-bold
+}
+
+.isWork {
+  @apply bg-primary
+}
+
+.isBreak {
+  @apply bg-primary-btn
+}

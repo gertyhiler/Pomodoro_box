@@ -1,0 +1,4 @@
+.wrapper {
+  @apply absolute z-50 top-0 left-0 right-0 w-screen h-screen flex justify-center items-center;
+  background: rgba(0, 0, 0, 0.5);
+}

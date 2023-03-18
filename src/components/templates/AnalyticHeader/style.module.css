@@ -1,0 +1,7 @@
+.AnalyticHeader {
+  @apply flex justify-between items-center
+}
+
+.AnalyticHeader>h2 {
+  @apply pl-11
+}

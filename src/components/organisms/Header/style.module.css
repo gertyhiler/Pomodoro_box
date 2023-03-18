@@ -1,0 +1,7 @@
+.header {
+  @apply py-4 shadow-xl
+}
+
+.list {
+  @apply flex justify-between items-center
+}

@@ -1,0 +1,20 @@
+.link {
+  @apply flex gap-2.5 items-center
+}
+
+.text {
+  @apply text-primary text-base font-normal
+}
+
+.link>svg>path,
+.text {
+  @apply transition-colors
+}
+
+.link:hover>svg>path {
+  @apply fill-primary-dark
+}
+
+.link:hover>.text {
+  @apply text-primary-dark
+}

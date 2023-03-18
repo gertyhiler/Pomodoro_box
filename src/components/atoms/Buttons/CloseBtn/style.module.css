@@ -1,0 +1,7 @@
+.btn {
+  @apply w-fit
+}
+
+.btn:hover svg path {
+  @apply fill-text-primary-color transition-colors
+}

@@ -1,0 +1,13 @@
+.clock {
+  @apply text-text-placeholder font-thin transition-colors;
+  font-size: 150px;
+  line-height: 182px;
+}
+
+.isBreak {
+  @apply text-primary-btn
+}
+
+.isWork {
+  @apply text-primary
+}

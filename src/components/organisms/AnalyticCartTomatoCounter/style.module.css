@@ -1,0 +1,12 @@
+.tomatoCount {
+  @apply w-full flex justify-center items-center py-6
+}
+
+.tomatoCountRow {
+  @apply w-full flex justify-center items-center bg-primary p-3
+}
+
+.wrapper {
+  @apply flex flex-col bg-bg-f4;
+  height: 179px
+}
