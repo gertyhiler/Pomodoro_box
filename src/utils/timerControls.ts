@@ -47,31 +47,23 @@ export function startTimer (): void {
       useTimerTaskStore.getState().setSec(sec)
 
       if (useTimerTaskStore.getState().isBreak) {
-        switch (useTimerTaskStore.getState().breakCount) {
-          case 4:
-            useTimerTaskStore.getState().resetBreak()
-            min = useSettingStore.getState().timeLongBreak
-            sec = 0
-            useTimerTaskStore.getState().setMin(min)
-            useTimerTaskStore.getState().setSec(sec)
-            return
-          default:
-            useTimerTaskStore.getState().increaseBreak()
-            min = useSettingStore.getState().timeShortBreak
-            useTimerTaskStore.getState().setMin(min)
-            sec = 0
-            useTimerTaskStore.getState().setSec(sec)
-            return
+        if (useTimerTaskStore.getState().breakCount === 4) {
+          useTimerTaskStore.getState().resetBreak()
+          min = useSettingStore.getState().timeLongBreak
+          sec = 0
+          useTimerTaskStore.getState().setMin(min)
+          useTimerTaskStore.getState().setSec(sec)
+        } else {
+          useTimerTaskStore.getState().increaseBreak()
+          min = useSettingStore.getState().timeShortBreak
+          useTimerTaskStore.getState().setMin(min)
+          sec = 0
+          useTimerTaskStore.getState().setSec(sec)
+          return
         }
       } else {
         if (typeof useTasksStore.getState().tasks[0] === 'undefined') {
-          clearInterval(useTimerTaskStore.getState().id)
-          useTimerTaskStore.getState().setMin(useSettingStore.getState().timeOneTomato)
-          useTimerTaskStore.getState().setSec(0)
-          useTimerTaskStore.getState().setRun(false)
-          useTimerTaskStore.getState().setBreak(false)
-          useTimerTaskStore.getState().setPause(false)
-          useAnalyticStore.getState().setPauseStartTime(null)
+          resetTimer()
           return
         }
         min = useSettingStore.getState().timeOneTomato
@@ -110,24 +102,22 @@ export function stopTimer (): void {
     useAnalyticStore.getState().setEndTime((useTimerTaskStore.getState().min * 60) + useTimerTaskStore.getState().sec)
     useAnalyticStore.getState().increaseStopCount()
   }
-  clearInterval(useTimerTaskStore.getState().id)
-  useTimerTaskStore.getState().setMin(useSettingStore.getState().timeOneTomato)
-  useTimerTaskStore.getState().setSec(0)
-  useTimerTaskStore.getState().setRun(false)
-  useTimerTaskStore.getState().setBreak(false)
-  useTimerTaskStore.getState().setPause(false)
-  useAnalyticStore.getState().setPauseStartTime(null)
+  resetTimer()
 }
 export function completedTask (): void {
-  clearInterval(useTimerTaskStore.getState().id)
   useAnalyticStore.getState().setEndTime((useTimerTaskStore.getState().min * 60) + useTimerTaskStore.getState().sec)
   useAnalyticStore.getState().setCompletedTomato()
   useAnalyticStore.getState().increaseTomatoCount()
-  useTimerTaskStore.getState().setMin(useSettingStore.getState().timeOneTomato)
   useTasksStore.getState().setCompletedTask(0)
   if (useTasksStore.getState().tasks[0].completedTomato >= useTasksStore.getState().tasks[0].tomatoTimerCount) {
     useTasksStore.getState().deleteTask(0)
   }
+  resetTimer()
+}
+
+function resetTimer (): void {
+  clearInterval(useTimerTaskStore.getState().id)
+  useTimerTaskStore.getState().setMin(useSettingStore.getState().timeOneTomato)
   useTimerTaskStore.getState().setSec(0)
   useTimerTaskStore.getState().setRun(false)
   useTimerTaskStore.getState().setBreak(false)
