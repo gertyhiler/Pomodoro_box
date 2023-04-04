@@ -1,0 +1,7 @@
+.item {
+  @apply flex flex-col gap-5
+}
+
+.input {
+  @apply py-2 px-1 bg-slate-100 border border-solid border-slate-600 outline-none focus-visible:border-primary-dark
+}
