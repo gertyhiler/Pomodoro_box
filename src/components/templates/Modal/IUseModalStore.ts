@@ -1,7 +1,7 @@
 export interface IUseModalStore {
   isModalOpen: boolean
-  taskId: number | null
+  taskId: string | null
 
   setIsModalOpen: (isOpen: boolean) => void
-  setTaskId: (id: number | null) => void
+  setTaskId: (id: string | null) => void
 }

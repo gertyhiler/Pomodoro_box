@@ -8,7 +8,7 @@ export const AddTaskBtn: FC = () => {
   const addTask = useTasksStore((state) => state.addTask)
   function handleClick (): void {
     if (useInputStore.getState().value.trim() === '') return
-    addTask({ title: useInputStore.getState().value.trim(), tomatoTimerCount: 1, isEditable: false, completedTomato: 0 })
+    addTask(useInputStore.getState().value.trim())
     setValue('')
   }
   return (

@@ -3,10 +3,10 @@ import { useTasksStore } from '../../../store/tasks/useTasksStore'
 import { Increase, Reduce, Edit, Delete } from '../../molecules/dropdownButtons'
 import { Modal } from '../../templates/Modal'
 import { useModalStore } from '../../templates/Modal/useModalStore'
-import { type ITaskDropdown } from './ITaskDropdown'
 import style from './style.module.css'
+import { type Task } from '../../../store/tasks/Task'
 
-export const TaskDropdown: FC<ITaskDropdown> = ({ id }) => {
+export const TaskDropdown: FC<Pick <Task, 'id'>> = ({ id }) => {
   const { increaseTomatoCount, decreaseTomatoCount, setEditTask } = useTasksStore(state => state)
   const { isModalOpen, setIsModalOpen, setTaskId } = useModalStore(state => state)
   useEffect(() => {

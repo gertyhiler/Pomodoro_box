@@ -1,10 +1,10 @@
 import { create } from 'zustand'
-import { createJSONStorage, persist, devtools } from 'zustand/middleware'
+import { createJSONStorage, persist } from 'zustand/middleware'
 import { createStringDate } from '../../utils/createStringDate'
 import { type IAnalyticDay, type IUseAnalyticStore } from './IUseAnalyticStore'
 import produce from 'immer'
 
-export const useAnalyticStore = create(devtools(
+export const useAnalyticStore = create(
   persist<IUseAnalyticStore>(
     (set, get) => ({
       // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
@@ -72,4 +72,4 @@ export const useAnalyticStore = create(devtools(
       version: 0
     }
   )
-))
+)
