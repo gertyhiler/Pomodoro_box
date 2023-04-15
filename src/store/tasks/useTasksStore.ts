@@ -2,7 +2,6 @@ import { create } from 'zustand'
 import { type IUseTasksStore } from './IUseTasksStore'
 import { type Task } from './Task'
 import { persist, createJSONStorage, devtools } from 'zustand/middleware'
-import produce from 'immer'
 import { v4 } from 'uuid'
 
 export const useTasksStore = create(devtools(
@@ -23,38 +22,55 @@ export const useTasksStore = create(devtools(
         }))
       },
       findTask: (key) => get().tasks[get().tasks.findIndex(value => value.id === key)],
+
       increaseTomatoCount: (key) => {
-        set(produce<IUseTasksStore>((state) => {
-          state.tasks[get().tasks.findIndex(value => value.id === key)].tomatoTimerCount++
-        }))
+        set((state) => {
+          return {
+            tasks: [...state.tasks].map((task, index) => {
+              if (task.id === key) {
+                return { ...task, tomatoTimerCount: state.tasks[index].tomatoTimerCount + 1 }
+              }
+              return task
+            })
+          }
+        })
       },
       decreaseTomatoCount: (key) => {
-        set(produce<IUseTasksStore>((state) => {
-          state.tasks[get().tasks.findIndex(value => value.id === key)].tomatoTimerCount--
-        }))
+        set((state) => {
+          return {
+            tasks: [...state.tasks].map((task, index) => {
+              if (task.id === key) {
+                return { ...task, tomatoTimerCount: state.tasks[index].tomatoTimerCount - 1 }
+              }
+              return task
+            })
+          }
+        })
       },
       setEditTask: (key) => {
-        set(produce<IUseTasksStore>((state) => {
-          state.tasks[get().tasks.findIndex(value => value.id === key)].isEditable = !state.tasks[get().tasks.findIndex(value => value.id === key)].isEditable
-        }))
+        set((state) => {
+          return {
+            tasks: [...state.tasks].map((task, index) => {
+              if (task.id === key) {
+                return { ...task, isEditable: !state.tasks[index].isEditable }
+              }
+              return task
+            })
+          }
+        })
       },
       editTask: (key, value) => {
-        set(produce<IUseTasksStore>((state) => {
-          state.tasks[get().tasks.findIndex(value => value.id === key)].title = value
-        }))
+        set((state) => {
+          return {
+            tasks: [...state.tasks].map((task) => {
+              if (task.id === key) {
+                return { ...task, title: value }
+              }
+              return task
+            })
+          }
+        })
       },
-      // deleteTask: (key) => {
-      //   set(produce<IUseTasksStore>((state) => {
-      //     // const indexDeletingItem = get().tasks.findIndex(value => value.id === key)
-      //     for (let i = 0; i < get().tasks.length; i++) {
-      //       if (get().tasks[i].order > 1) {
-      //         console.log('state.tasks[i].order: ', state.tasks[i].order)
-      //         state.tasks[i].order--
-      //       }
-      //     }
-      //     // state.tasks.splice((get().tasks.findIndex(value => value.id === key)), 1)
-      //   }))
-      // },
       deleteTask: (key) => {
         set((state) => {
           return {
@@ -67,10 +83,22 @@ export const useTasksStore = create(devtools(
           }
         })
       },
+      // setCompletedTask: (key) => {
+      //   set(produce<IUseTasksStore>((state) => {
+      //     state.tasks[get().tasks.findIndex(value => value.id === key)].completedTomato++
+      //   }))
+      // },
       setCompletedTask: (key) => {
-        set(produce<IUseTasksStore>((state) => {
-          state.tasks[get().tasks.findIndex(value => value.id === key)].completedTomato++
-        }))
+        set((state) => {
+          return {
+            tasks: [...state.tasks].map((task, index) => {
+              if (task.id === key) {
+                return { ...task, completedTomato: state.tasks[index].completedTomato + 1 }
+              }
+              return task
+            })
+          }
+        })
       },
       setNewOrder: (key, order) => {
         set((state) => {
