@@ -3,5 +3,5 @@
 }
 
 .list {
-  @apply flex justify-between items-center ml-auto gap-2
+  @apply flex justify-between items-center ml-auto gap-4
 }
