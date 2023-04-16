@@ -5,6 +5,7 @@ import { useSettingStore } from '../store/setting/useSettingStore'
 import { useTasksStore } from '../store/tasks/useTasksStore'
 import { createNewTomato } from './createNewAnalyticTomato'
 
+const taskId = useTasksStore.getState().tasks[0].id
 export function startTimer (): void {
   if (typeof useTasksStore.getState().tasks[0] === 'undefined') return // Если нет задач, таймер не запускается
   if (!useTimerTaskStore.getState().isPause && !useTimerTaskStore.getState().isBreak) { // Если таймер работает в режиме задачи, создаем новую запись в аналитику
@@ -36,9 +37,9 @@ export function startTimer (): void {
     if (min === 0 && sec === 0) { // Если таймер дошел до нуля
       useAudioStore.getState().setIsPlay() // Проиграть музыку
       if (!useTimerTaskStore.getState().isBreak) { // если таймер считает время задачи
-        useTasksStore.getState().setCompletedTask(0) // Засчитать помидорку в задачу
+        useTasksStore.getState().setCompletedTask(taskId) // Засчитать помидорку в задачу
         if (useTasksStore.getState().tasks[0].completedTomato >= useTasksStore.getState().tasks[0].tomatoTimerCount) { // Если учтенные помидорки равны или превышают установленное значение для задачи
-          useTasksStore.getState().deleteTask(0) // Удалить эту задачу из списка
+          useTasksStore.getState().deleteTask(taskId) // Удалить эту задачу из списка
         }
         useAnalyticStore.getState().setEndTime(min) // Записать в аналитику минуты окончания задачи
         useAnalyticStore.getState().setCompletedTomato() // Записать в аналитику информацию о выполнении помидорки
@@ -106,9 +107,9 @@ export function completedTask (): void { // Кнопка выполнено
   useAnalyticStore.getState().setEndTime(getTimeStoppedTaskValue()) // Зафиксировать время остановки задачи
   useAnalyticStore.getState().setCompletedTomato() // Отметить помидорку завершенной
   useAnalyticStore.getState().increaseTomatoCount() // Увеличить счетчик завершенных помидорок
-  useTasksStore.getState().setCompletedTask(0) // Отметить задачу завершенной
+  useTasksStore.getState().setCompletedTask(taskId) // Отметить задачу завершенной
   if (useTasksStore.getState().tasks[0].completedTomato >= useTasksStore.getState().tasks[0].tomatoTimerCount) {
-    useTasksStore.getState().deleteTask(0)
+    useTasksStore.getState().deleteTask(taskId)
   }
   resetTimer()
 }
