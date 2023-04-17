@@ -10,3 +10,7 @@
   @apply flex flex-col bg-bg-f4;
   height: 179px
 }
+
+.wrapper_dark {
+  @apply bg-bg-f4-invert
+}

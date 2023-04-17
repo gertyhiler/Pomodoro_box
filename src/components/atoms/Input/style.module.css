@@ -1,3 +1,7 @@
 .input {
   @apply placeholder:text-text-placeholder text-base text-text-primary-color outline-none py-5 pl-4 bg-bg-f4 w-3/4
 }
+
+.input_dark {
+  @apply bg-bg-input-dark placeholder:text-placeholder-invert text-primary-color-invert
+}

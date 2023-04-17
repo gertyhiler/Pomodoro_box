@@ -1,3 +1,7 @@
 .btn {
   @apply bg-gray-400 rounded-full p-4 hover:bg-hover-btn transition-colors
 }
+
+.btn_dark {
+  @apply hover:bg-hover-btn-invert
+}

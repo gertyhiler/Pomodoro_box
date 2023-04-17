@@ -2,6 +2,10 @@
   @apply text-text-primary-color font-light text-base relative w-fit hover:text-text-placeholder transition-colors hover:after:bg-text-placeholder;
 }
 
+.btn_dark {
+  @apply text-white hover:text-bg-f4 hover:after:bg-bg-f4
+}
+
 .btn::after {
   @apply absolute bottom-0 left-0 right-[10%] h-px content-[""] bg-text-primary-color transition-colors;
 }

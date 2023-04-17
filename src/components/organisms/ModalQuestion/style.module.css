@@ -2,6 +2,10 @@
   @apply relative py-6 w-96 flex justify-center bg-white
 }
 
+.modal_dark {
+  @apply bg-bg-dark
+}
+
 .wrapper {
   @apply flex flex-col gap-3 items-center w-fit
 }

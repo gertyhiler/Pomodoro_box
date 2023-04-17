@@ -2,6 +2,10 @@
   @apply py-5 px-4 relative bg-bg-f4
 }
 
+.summary_dark {
+  @apply bg-bg-f4-invert
+}
+
 .summary>svg {
   @apply absolute;
   top: 45%;

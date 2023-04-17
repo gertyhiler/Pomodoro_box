@@ -1,3 +1,7 @@
 .btn {
   @apply bg-primary-btn text-white text-base font-medium px-12 py-4 hover:bg-hover-btn transition-colors
 }
+
+.btn_dark {
+  @apply bg-primary-btn-invert text-primary-color-invert hover:bg-hover-btn-invert
+}

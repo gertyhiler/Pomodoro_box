@@ -1,3 +1,7 @@
 .h2 {
   @apply text-2xl text-text-primary-color font-bold
 }
+
+.h2_dark {
+  @apply text-primary-color-invert
+}

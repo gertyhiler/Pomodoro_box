@@ -1,15 +1,13 @@
 import React, { type FC } from 'react'
 import { Minus } from '../../../atoms/Minus'
 import { SecondaryText } from '../../../atoms/SecondaryText'
-import { type IDropdownButton } from '../IDropdownButton'
-import style from '../style.module.css'
+import { type IDropdownButton } from '../../../atoms/DropdownItem/IDropdownButton'
+import { DropdownItem } from '../../../atoms/DropdownItem'
 
-export const Reduce: FC<IDropdownButton> = ({ onClick }) => {
+export const Reduce: FC<Pick<IDropdownButton, 'onClick'>> = ({ onClick }) => {
   return (
-    <li className='list-none'>
-      <button className={style.item} onClick={() => { onClick() }}>
+    <DropdownItem onClick={ onClick }>
       <Minus/> <SecondaryText text='Уменьшить' color='black'/>
-      </button>
-    </li>
+    </DropdownItem>
   )
 }

@@ -1,10 +1,12 @@
 import React, { type FC } from 'react'
 import { type IInput } from './IInput'
 import style from './style.module.css'
+import { useSwitcherState } from '../Switcher/state'
 
 export const Input: FC<IInput> = ({ placeholder, value, onChange }) => {
+  const isLight = useSwitcherState(state => state.isLight)
   return (
-    <input placeholder={placeholder} value={value} onChange={(e) => { onChange(e) }} className={style.input}/>
+    <input placeholder={placeholder} value={value} onChange={(e) => { onChange(e) }} className={`${style.input} ${isLight ? '' : style.input_dark}`}/>
   )
 }
 

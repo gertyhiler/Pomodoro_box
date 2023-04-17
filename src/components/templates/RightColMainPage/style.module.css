@@ -1,3 +1,7 @@
 .section {
   @apply flex flex-col w-full gap-8 bg-gray-100 h-fit pb-20 basis-2/3
 }
+
+.section_dark {
+  @apply bg-slate-900
+}

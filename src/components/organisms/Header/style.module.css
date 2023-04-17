@@ -1,5 +1,5 @@
 .header {
-  @apply py-4 shadow-xl
+  @apply py-4 shadow-xl transition-colors
 }
 
 .list {

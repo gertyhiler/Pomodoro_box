@@ -1,3 +1,7 @@
 .item {
   @apply flex gap-2 w-full px-4 py-2 items-center bg-white hover:bg-bg-f4 transition-colors
-} 
+}
+
+.item_dark {
+  @apply bg-bg-dropdown-dark hover:bg-hover-btn-invert
+}

@@ -3,3 +3,7 @@
   width: 296px;
   height: 260px;
 }
+
+.wrapper_dark {
+  @apply bg-bg-f4-invert
+}

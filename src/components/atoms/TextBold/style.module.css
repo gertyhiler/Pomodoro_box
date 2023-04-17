@@ -5,6 +5,9 @@
 .gray {
   @apply text-text-placeholder
 }
+.gray_dark {
+  @apply text-placeholder-invert
+}
 .white {
   @apply text-white
 }

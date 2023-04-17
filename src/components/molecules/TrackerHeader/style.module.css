@@ -2,6 +2,10 @@
   @apply flex justify-between px-10 py-4 bg-color-c4 transition-colors
 }
 
+.header_dark {
+  @apply bg-color-c4-invert
+}
+
 .header span:first-child {
   @apply font-bold
 }

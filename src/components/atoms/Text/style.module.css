@@ -3,7 +3,7 @@
 }
 
 .white {
-  @apply text-white
+  @apply text-primary-color-invert
 }
 
 .black {
