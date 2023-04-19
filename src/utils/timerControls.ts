@@ -41,9 +41,7 @@ export function startTimer (): void {
         if (useTasksStore.getState().tasks[0].completedTomato >= useTasksStore.getState().tasks[0].tomatoTimerCount) { // Если учтенные помидорки равны или превышают установленное значение для задачи
           useTasksStore.getState().deleteTask(taskId) // Удалить эту задачу из списка
         }
-        useAnalyticStore.getState().setEndTime(min) // Записать в аналитику минуты окончания задачи
-        useAnalyticStore.getState().setCompletedTomato() // Записать в аналитику информацию о выполнении помидорки
-        useAnalyticStore.getState().increaseTomatoCount() // Прибавить в аналитике счетчик выполненных сегодня помидорок
+        writeToAnalyticAboutEndTask(min)
       }
       useTimerTaskStore.getState().setBreak(!useTimerTaskStore.getState().isBreak) // Инвертировать значение перерыва
       sec-- // Отнять секунду у таймера
@@ -131,4 +129,10 @@ function updateStateTimer (min: number, sec: number): void {
 
 function getTimeStoppedTaskValue (): number {
   return (useTimerTaskStore.getState().min * 60) + useTimerTaskStore.getState().sec
+}
+
+function writeToAnalyticAboutEndTask (min: number): void {
+  useAnalyticStore.getState().setEndTime(min) // Записать в аналитику минуты окончания задачи
+  useAnalyticStore.getState().setCompletedTomato() // Записать в аналитику информацию о выполнении помидорки
+  useAnalyticStore.getState().increaseTomatoCount() // Прибавить в аналитике счетчик выполненных сегодня помидорок
 }

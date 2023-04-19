@@ -1,30 +1,24 @@
-import React, { useEffect, useState, type FC } from 'react'
+import React, { type FC } from 'react'
 import { useAnalyticStore } from '../../../store/analytic/useAnalyticStore'
-import { useAnalyticChart } from '../../../store/analyticChart/useAnalyticChart'
 import { convertMinutesTomatoToString } from '../../../utils/convertMinutesTomatoToString'
 import { AnalyticBigText } from '../../atoms/AnalyticBigText'
 import { PauseTimeSvg } from '../../atoms/PauseTimeSvg'
 import { PauseTimeTitle } from '../../molecules/PauseTimeTitle'
 import style from './style.module.css'
+import { convertSecondToMinutes } from '../../../utils/convertSecondToMinutes'
+import { type IUseAnalyticChartStore } from '../../../store/analyticChart/IUseAnalyticChartStore'
 
-export const AnalyticPauseTimeCart: FC = () => {
-  const day = useAnalyticChart(state => state.currentWeekDay)
-  const [isEmpty, setEmpty] = useState<boolean>(true)
-  const [pauseTime, setPauseTime] = useState<number>(0)
-  useEffect(() => {
-    if (typeof (useAnalyticStore.getState().state[day]) === 'undefined') {
-      setEmpty(true)
-      setPauseTime(0)
-      return
-    }
-    setEmpty(false)
-    setPauseTime(useAnalyticStore.getState().state[day].pauseTime)
-  }, [day])
-  const text = convertMinutesTomatoToString(Number((pauseTime / 60).toFixed()))
+export const AnalyticPauseTimeCart: FC<Pick<IUseAnalyticChartStore, 'currentWeekDay'>> = ({ currentWeekDay }) => {
+  const text = typeof (useAnalyticStore.getState().state[currentWeekDay]) === 'undefined'
+    ? 0
+    : convertMinutesTomatoToString(
+      convertSecondToMinutes(
+        useAnalyticStore.getState().state[currentWeekDay].pauseTime
+      ))
   return (
-    <div className={`${style.pauseTimeCart} ${isEmpty ? style.empty : ''}`}>
+    <div className={`${style.pauseTimeCart} ${text === 0 ? style.empty : ''}`}>
       <PauseTimeTitle/>
-      <AnalyticBigText text={`${isEmpty ? '0' : text}`}/>
+      <AnalyticBigText text={`${text}`}/>
       <PauseTimeSvg/>
     </div>
   )

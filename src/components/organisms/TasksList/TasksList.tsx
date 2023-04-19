@@ -3,7 +3,7 @@ import { Delimiter } from '../../atoms/Delimiter'
 import { Task } from '../../molecules/Task'
 import { type ITasksListProps } from './ITastsListProps'
 import { type Task as ITaskStore } from '../../../store/tasks/Task'
-function sort (a: ITaskStore, b: ITaskStore): number {
+function sortTaskListByOrderKey (a: ITaskStore, b: ITaskStore): number {
   if (a.order > b.order) {
     return 1
   } else {
@@ -13,7 +13,7 @@ function sort (a: ITaskStore, b: ITaskStore): number {
 export const TasksList: FC<ITasksListProps> = ({ list }) => {
   return (
     <ul>
-      {list.sort(sort).map(({ tomatoTimerCount, title, id }) => {
+      {list.sort(sortTaskListByOrderKey).map(({ tomatoTimerCount, title, id }) => {
         return (<Task count={tomatoTimerCount} text={title} key={id} id={id}/>)
       })}
       <Delimiter/>

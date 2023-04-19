@@ -11,9 +11,27 @@ export const TrackerHeader: FC<ITrackerHeaderProps> = ({ text, trackerCounter })
   const isLight = useSwitcherState(state => state.isLight)
 
   return (
-    <div className={`${style.header} ${isLight ? '' : style.header_dark} ${isRun && !isBreak ? style.isWork : isRun && isBreak ? style.isBreak : ''}`}>
-      <Text color={isLight ? 'white' : 'black'} text={text}/>
-      <Text color={isLight ? 'white' : 'black'} text={`Помидор ${trackerCounter}`}/>
+    <div
+    className=
+    {
+      `${style.header}
+      ${isLight ? '' : style.header_dark}
+      ${isRun && !isBreak ? style.isWork : isRun && isBreak ? style.isBreak : ''}`
+    }>
+      <Text
+        color=
+        {
+          isLight ? 'white' : 'black'
+        }
+        text={text}
+      />
+      <Text
+        color=
+        {
+          isLight ? 'white' : 'black'
+        }
+        text={`Помидор ${trackerCounter}`}
+      />
     </div>
   )
 }

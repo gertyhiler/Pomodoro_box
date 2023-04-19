@@ -13,8 +13,7 @@ export const useAnalyticStore = create(
       addTomato: (tomato) => {
         const day = createStringDate()
         set(produce<IUseAnalyticStore>((store) => {
-          // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-          if (!store.state[day]) {
+          if (typeof store.state[day] === 'undefined') {
             store.state[day] = {
               tomato: [],
               pauseTime: 0,

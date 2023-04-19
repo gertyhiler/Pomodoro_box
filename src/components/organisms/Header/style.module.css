@@ -5,3 +5,7 @@
 .list {
   @apply flex justify-between items-center ml-auto gap-4
 }
+
+.nav {
+  @apply container mx-auto flex items-center
+}

@@ -1,29 +1,20 @@
-import React, { useEffect, useState, type FC } from 'react'
+import React, { type FC } from 'react'
 import { useAnalyticStore } from '../../../store/analytic/useAnalyticStore'
-import { useAnalyticChart } from '../../../store/analyticChart/useAnalyticChart'
-
 import { FocusSvg } from '../../atoms/FocusSvg'
 import { FocusCartText } from '../../molecules/FocusCartText'
 import { FocusCartTitle } from '../../molecules/FocusCartTitle'
+import { calculateFocusValueOnCurrentWeekDay } from '../../../utils/calculateFocusValueOnCurrentWeekDay'
 import style from './style.module.css'
+import { type IUseAnalyticChartStore } from '../../../store/analyticChart/IUseAnalyticChartStore'
 
-export const AnalyticFocusCart: FC = () => {
-  const day = useAnalyticChart(state => state.currentWeekDay)
-  const [isEmpty, setEmpty] = useState<boolean>(true)
-  const [focusValue, setFocusValue] = useState<string>('')
-  useEffect(() => {
-    if (typeof (useAnalyticStore.getState().state[day]) === 'undefined') {
-      setEmpty(true)
-      setFocusValue('')
-      return
-    }
-    setEmpty(false)
-    setFocusValue((((useAnalyticStore.getState().state[day].tomato.reduce((acc, item) => item.isCompleted ? acc + (item.startTime - item.endTime) : acc + 0, 0)) / ((useAnalyticStore.getState().state[day].tomato.reduce((acc, item) => (acc + (item.startTime - item.endTime)), 0)) + Number(useAnalyticStore.getState().state[day].pauseTime.toFixed()))) * 100).toFixed())
-  }, [day])
+export const AnalyticFocusCart: FC<Pick<IUseAnalyticChartStore, 'currentWeekDay'>> = ({ currentWeekDay }) => {
+  const focusValue = typeof (useAnalyticStore.getState().state[currentWeekDay]) === 'undefined'
+    ? 0
+    : calculateFocusValueOnCurrentWeekDay(currentWeekDay)
   return (
-    <div className={`${style.focusCart} ${isEmpty ? style.empty : ''}`}>
+    <div className={`${style.focusCart} ${focusValue === 0 ? style.empty : ''}`}>
       <FocusCartTitle/>
-      <FocusCartText text={`${isEmpty ? '0' : focusValue}`}/>
+      <FocusCartText text={`${focusValue}`}/>
       <FocusSvg/>
     </div>
   )

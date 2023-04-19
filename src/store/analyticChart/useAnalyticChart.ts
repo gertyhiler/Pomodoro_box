@@ -7,9 +7,9 @@ export const useAnalyticChart = create(devtools<IUseAnalyticChartStore>((set) =>
   weekDays: createArrayWeekDay(),
   currentWeekDay: '',
 
+  setCurrentWeek: () => { set(() => ({ weekDays: createArrayWeekDay(0) })) },
   setLastWeekDays: () => { set(() => ({ weekDays: createArrayWeekDay(7) })) },
   setTwoLastWeekDays: () => { set(() => ({ weekDays: createArrayWeekDay(14) })) },
-  setCurrentWeek: () => { set(() => ({ weekDays: createArrayWeekDay(0) })) },
   setCurrentWeekDay: (index) => {
     set((state) => {
       if (state.currentWeekDay === state.weekDays[index]) return state

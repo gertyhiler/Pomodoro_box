@@ -24,5 +24,3 @@ export const RightColMainPage: FC = () => {
     </section>
   )
 }
-
-// TODO: Логика отрисовки и взаимодействия со стором [{title, completedTomato}]
