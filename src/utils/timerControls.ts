@@ -5,7 +5,9 @@ import { useSettingStore } from '../store/setting/useSettingStore'
 import { useTasksStore } from '../store/tasks/useTasksStore'
 import { createNewTomato } from './createNewAnalyticTomato'
 
-const taskId = useTasksStore.getState().tasks[0].id
+const taskId = typeof useTasksStore.getState().tasks[0] !== 'undefined' && typeof useTasksStore.getState().tasks[0].id !== 'undefined'
+  ? useTasksStore.getState().tasks[0].id
+  : ''
 export function startTimer (): void {
   if (typeof useTasksStore.getState().tasks[0] === 'undefined') return // Если нет задач, таймер не запускается
   if (!useTimerTaskStore.getState().isPause && !useTimerTaskStore.getState().isBreak) { // Если таймер работает в режиме задачи, создаем новую запись в аналитику
