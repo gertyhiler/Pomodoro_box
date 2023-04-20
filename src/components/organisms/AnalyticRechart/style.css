@@ -16,3 +16,7 @@ display: none
 cursor: pointer
 }
 
+.recharts-xAxis .recharts-cartesian-axis-tick-value:hover {
+  @apply fill-primary
+}
+
