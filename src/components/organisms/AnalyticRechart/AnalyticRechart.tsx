@@ -6,12 +6,13 @@ import { type IAxisClickEvent } from './IAxisClickEvent'
 import './style.css'
 import { useChartData } from './useChartData'
 import { convertSecondToMinutes } from '../../../utils/convertSecondToMinutes'
+import { createStringDate } from '../../../utils/createStringDate'
 
 export const AnalyticRechart: FC = () => {
-  const [activeIndex, setActiveIndex] = useState(0)
   const chartWrapperRef = useRef<HTMLDivElement>(null)
   const data = useChartData()
-  const setCurrentWeekDay = useAnalyticChart(state => state.setCurrentWeekDay)
+  const { setCurrentWeekDay, weekDays } = useAnalyticChart(state => state)
+  const [activeIndex, setActiveIndex] = useState(weekDays.indexOf(createStringDate()))
 
   function coloredSelectTick (color: string): void {
     if (chartWrapperRef === null) return
@@ -48,8 +49,6 @@ export const AnalyticRechart: FC = () => {
 
   useEffect(() => {
     coloredSelectTick('#666')
-    setActiveIndex(0)
-    if (useAnalyticChart.getState().currentWeekDay === useAnalyticChart.getState().weekDays[activeIndex]) return
     setCurrentWeekDay(activeIndex)
   }, [useAnalyticChart.getState().weekDays])
 
