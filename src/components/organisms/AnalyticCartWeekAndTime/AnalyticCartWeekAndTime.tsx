@@ -10,6 +10,7 @@ import { type IUseAnalyticChartStore } from '../../../store/analyticChart/IUseAn
 import { convertSecondToMinutes } from '../../../utils/convertSecondToMinutes'
 import { useAnalyticStore } from '../../../store/analytic/useAnalyticStore'
 import { dayText } from './dayText'
+import { convertMinutesTomatoToString } from '../../../utils/convertMinutesTomatoToString'
 
 export const AnalyticCartWeekAndTime: FC<Pick<IUseAnalyticChartStore, 'currentWeekDay'>> = ({ currentWeekDay }) => {
   const dayTextPosition = useAnalyticChart((state) => state.weekDays).indexOf(
@@ -17,8 +18,10 @@ export const AnalyticCartWeekAndTime: FC<Pick<IUseAnalyticChartStore, 'currentWe
   )
   const minutes = typeof (useAnalyticStore.getState().state[currentWeekDay]) === 'undefined'
     ? 0
-    : convertSecondToMinutes(
-      calculateSumSecondsOnCurrentWeekDay(currentWeekDay))
+    : convertMinutesTomatoToString(
+      convertSecondToMinutes(
+        calculateSumSecondsOnCurrentWeekDay(currentWeekDay)))
+  // console.log('calculateSumSecondsOnCurrentWeekDay(currentWeekDay): ', calculateSumSecondsOnCurrentWeekDay(currentWeekDay))
   const isLight = useSwitcherState((state) => state.isLight)
   return (
     <div className={`${style.wrapper} ${isLight ? '' : style.wrapper_dark}`}>

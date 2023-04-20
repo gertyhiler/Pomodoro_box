@@ -5,6 +5,7 @@ import { convertMinutesTomatoToString } from '../../../utils/convertMinutesTomat
 import { type IAxisClickEvent } from './IAxisClickEvent'
 import './style.css'
 import { useChartData } from './useChartData'
+import { convertSecondToMinutes } from '../../../utils/convertSecondToMinutes'
 
 export const AnalyticRechart: FC = () => {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -69,7 +70,7 @@ export const AnalyticRechart: FC = () => {
               return <Cell cursor="pointer" fill={index === activeIndex ? '#DC3E22' : '#EA8A79'} key={`cell-${index}`} />
             })}
           </Bar>
-          <YAxis tickCount={6} orientation='right' interval={1} tickLine={false} axisLine={false} tickFormatter={(v) => convertMinutesTomatoToString(v) } height={70} tickSize={20}/>
+          <YAxis tickCount={6} orientation='right' interval={1} tickLine={false} axisLine={false} tickFormatter={(v) => convertMinutesTomatoToString(convertSecondToMinutes(v)) } height={70} tickSize={20}/>
         </BarChart>
       </ResponsiveContainer>
     </div>

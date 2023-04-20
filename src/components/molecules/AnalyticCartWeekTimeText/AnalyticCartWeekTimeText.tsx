@@ -6,11 +6,11 @@ export const AnalyticCartWeekTimeText: FC<IAnalyticCartWeekTimeText> = ({ minSum
   return (
     <span>
       <Text
-        text='Вы работали над задачами в течении'
+        text='Вы работали над задачами в течении '
         color='black'
       />
       <Text
-        text={`${minSum} минуты`}
+        text={`${minSum}`}
         color='red'
       />
     </span>

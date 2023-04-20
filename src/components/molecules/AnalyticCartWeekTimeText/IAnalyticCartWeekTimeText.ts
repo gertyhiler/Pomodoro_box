@@ -1,3 +1,3 @@
 export interface IAnalyticCartWeekTimeText {
-  minSum: number
+  minSum: string
 }

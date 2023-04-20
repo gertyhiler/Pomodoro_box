@@ -8,8 +8,10 @@ export function useChartData (): Array<{ name: string, uv: number }> {
   const result = data
   useMemo(() => {
     weekDays.map((day) => {
-      return typeof useAnalyticStore.getState().state[day] !== 'undefined' ? useAnalyticStore.getState().state[day].tomato.reduce((acc, tomato) => acc + (tomato.startTime - tomato.endTime), 0) : 0
-    }).forEach((dayValue, index): void => { data[index].uv = dayValue / 60 })
+      return typeof useAnalyticStore.getState().state[day] !== 'undefined'
+        ? useAnalyticStore.getState().state[day].tomato.reduce((acc, tomato) => acc + (tomato.startTime - tomato.endTime), 0)
+        : 0
+    }).forEach((dayValue, index): void => { data[index].uv = dayValue })
   }, [weekDays])
 
   return result
