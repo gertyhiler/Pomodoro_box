@@ -104,6 +104,9 @@ export function stopTimer (): void { // Остановка таймера
   resetTimer() // Обновить таймер
 }
 export function completedTask (): void { // Кнопка выполнено
+  const taskId = typeof useTasksStore.getState().tasks[0] !== 'undefined' && typeof useTasksStore.getState().tasks[0].id !== 'undefined'
+    ? useTasksStore.getState().tasks[0].id
+    : ''
   useAnalyticStore.getState().setEndTime(getTimeStoppedTaskValue()) // Зафиксировать время остановки задачи
   useAnalyticStore.getState().setCompletedTomato() // Отметить помидорку завершенной
   useAnalyticStore.getState().increaseTomatoCount() // Увеличить счетчик завершенных помидорок
