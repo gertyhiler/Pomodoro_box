@@ -10,6 +10,7 @@ function App (): React.ReactElement {
       <Route path='/' element={<Main/>}/>
       <Route path='/analytic' element={<Analytic/>}/>
       <Route path='/setting' element={<Setting/>}/>
+      <Route path='*' element={<Main/>}/>
     </Routes>
   )
 }
